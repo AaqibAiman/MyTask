@@ -13,7 +13,7 @@ import com.app.mytask.R
 import com.app.mytask.room.CommentDataBase
 import kotlinx.coroutines.*
 
-class DetailsFragment : Fragment() {
+class DetailsFragment(var bundle: Bundle) : Fragment() {
 
     //  var result : LiveData<Comments>? = null
     var nodeID: Any? = null
@@ -37,9 +37,9 @@ class DetailsFragment : Fragment() {
         val nameView = view?.findViewById<TextView>(R.id.nameText)
         val descName = view?.findViewById<TextView>(R.id.descNameText)
 
-        val userName = arguments?.get("userName")
-        val description = arguments?.get("description")
-        nodeID = arguments?.get("nodeId")
+        val userName = bundle.get("userName")
+        val description = bundle.get("description")
+        nodeID = bundle.get("nodeId")
 
         nameView!!.text = "Name : $userName"
         descName!!.text = "Description : $description"

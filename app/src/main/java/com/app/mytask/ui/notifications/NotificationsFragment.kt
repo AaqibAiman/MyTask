@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.mytask.R
@@ -118,15 +117,17 @@ class NotificationsFragment : Fragment() , CustomAdapter.onClickItem {
 
         val bundle = bundleOf("userName" to data.name , "description" to data.description
         , "nodeId" to data.nodeId)
-        Navigation.findNavController(requireView()).navigate(R.id.detail_fragment , bundle);
+
+      //  Navigation.findNavController(requireView()).navigate(R.id.detail_fragment , bundle)
+
+        val ft = fragmentManager?.beginTransaction()
+        ft?.replace(R.id.nav_host_fragment, DetailsFragment(bundle))
+        ft?.commit()
+
 
     }
 
     override fun comments(data: UserResponse, comments: String) {
         addComment(data,comments)
     }
-
-
-
-
 }
